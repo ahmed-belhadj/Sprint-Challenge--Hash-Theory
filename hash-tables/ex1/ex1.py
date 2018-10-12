@@ -1,11 +1,12 @@
 def get_indices_of_item_weights(weights, limit):
-    hash_table = {weight: weights.index(weight) for weight in weights}
-    for weight in hash_table:
-        weight2 = limit - weight
-        if weight2 in hash_table.keys():
-            return tuple([hash_table[weight], hash_table[weight2]])
-
-    return tuple()
+    hash_table = {}
+    for i in range(len(weights)):
+        weight = weights[i]
+        if (limit - weight) in hash_table:
+            return (i, hash_table[(limit - weight)])
+        else:
+            hash_table[weight] = i
+    return ()
 
 
 if __name__ == '__main__':
